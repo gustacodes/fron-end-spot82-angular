@@ -17,17 +17,17 @@ export class ModalRegisterComponent implements OnInit {
   @Input() vagaModal!: Vagas;
   @Input() vagaAtual!: Vagas
 
-  constructor(public modalStatus: SharedService, private formBuilder: FormBuilder, private spotService: SpotService) {}
+  constructor(public service: SharedService, private formBuilder: FormBuilder, private spotService: SpotService) {}
 
   ngOnInit(): void {
     
     this.formGroup = this.formBuilder.group({
       
-      nome: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.nome : '', Validators.required],
-      veiculo: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.veiculo : '', Validators.required],
-      tipo: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.tipo : '', Validators.required],
-      placa: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.placa : '', Validators.required],
-      vaga: [this.modalStatus.getVagaAtual()!.id, Validators.required],
+      nome: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.nome : '', Validators.required],
+      veiculo: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.veiculo : '', Validators.required],
+      tipo: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.tipo : '', Validators.required],
+      placa: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.placa : '', Validators.required],
+      vaga: [this.service.getVagaAtual()!.id, Validators.required],
 
     })
   }
@@ -45,4 +45,16 @@ export class ModalRegisterComponent implements OnInit {
     )
 
   }
+
+  finalizarPeriodo() {
+    this.spotService.finalizar(this.service.getVagaAtual()?.id).subscribe(() => {
+      alert('Cliente finalizado')
+    },
+    
+    (error) => {
+      alert('Falha ao finalizar' + JSON.stringify(error))
+    }
+    )
   }
+
+}

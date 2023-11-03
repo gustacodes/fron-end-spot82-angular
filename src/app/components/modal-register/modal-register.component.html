@@ -1,28 +1,30 @@
 <div class="modal">
-  <div class="div_bakground" (click)="modalStatus.setModal(false)"></div>
+  <div class="div_bakground" (click)="service.setModal(false)"></div>
   <div class="div_modal">
     <div class="header">
-      <h1>VAGA: {{ modalStatus.getVagaAtual()?.id }}</h1>
+      <h1>VAGA: [{{ service.getVagaAtual()?.id }}]</h1>
       <button
-        (click)="modalStatus.setModal(false)"
+        (click)="service.setModal(false)"
         class="button_close"
         type="button"
       >
-        <img src="../../../assets/emblemunreadable_93487.svg" alt="" />
+        <img src="../../../assets/close.svg" alt="" />
       </button>
     </div>
-    <form [formGroup]="formGroup" (ngSubmit)="salvar()">
-      <div class="div_inputs">
-        <div class="blockInput">
-          <div
-            *ngIf="
-              modalStatus.getVagaAtual()?.cliente;
-              then ifBlock;
-              else elseBlock
-            "
-          ></div>
-
-          <ng-template #ifBlock>
+    <div class="div_inputs">
+      <div class="blockInput">
+        <div
+        *ngIf="
+        service.getVagaAtual()?.cliente;
+        then HaCliente;
+        else SemCliente
+        "
+        >
+      
+      </div>
+        
+        <ng-template #HaCliente>
+            <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()" >
             <!-- Conteúdo exibido quando a condição é verdadeira -->
             <label>NOME:</label>
             <input
@@ -67,12 +69,28 @@
               <option value="CREDITO">CREDITO</option>
               <option value="PIX">PIX</option>
             </select>
+
+            <div class="div_buttons">
+              <button
+                class="button_close"
+                (click)="service.setModal(false)"
+                type="button">
+                CANCELAR
+              </button>
+              <button class="buttonSubmit" type="submit">FINALIZAR</button>
+            </div>
+            </form>
           </ng-template>
 
-          <ng-template #elseBlock>
+          <ng-template #SemCliente>
+            <form [formGroup]="formGroup" (ngSubmit)="salvar()" >
             <!-- Conteúdo exibido quando a condição é falsa (bloco else) -->
             <label>NOME:</label>
-            <input type="text" formControlName="nome" placeholder="Cliente" />
+            <input
+            type="text"
+            formControlName="nome"
+            placeholder="Cliente"
+            />
 
             <label>VEÍCULO:</label>
             <input
@@ -89,19 +107,25 @@
             />
 
             <label>PLACA:</label>
-            <input type="text" formControlName="placa" placeholder="Placa" />
+            <input
+            type="text"
+            formControlName="placa"
+            placeholder="Placa"
+            />
+
+            <div class="div_buttons">
+              <button
+                class="button_close"
+                (click)="service.setModal(false)"
+                type="button">
+                CANCELAR
+              </button>
+              <button class="buttonSubmit" type="submit">REGISTRAR</button>
+            </div>
+            
+          </form>
           </ng-template>
         </div>
       </div>
-      <div class="div_buttons">
-        <button
-          class="button_close"
-          (click)="modalStatus.setModal(false)"
-          type="button">
-          Cancelar
-        </button>
-        <button class="buttonSubmit" type="submit">Registrar</button>
-      </div>
-    </form>
   </div>
 </div>

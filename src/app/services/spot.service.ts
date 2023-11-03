@@ -20,6 +20,10 @@ export class SpotService {
     return this.http.get<Vagas[]>(`${this.baseApiUrl}/estacionamentos/vagas`);
   }
 
+  finalizar(id: number | undefined){
+    return this.http.delete<Cliente>(`${this.baseApiUrl}/clientes/recibo/${id}`)
+  }
+
   getVagaById(id: number): Observable<Vagas> {
     return this.http.get<Vagas>(`${this.baseApiUrl}/estacionamentos/vagas/${id}`);
   }
