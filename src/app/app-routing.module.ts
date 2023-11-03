@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CardComponent } from './components/card/card.component';
+import { RelatoriosComponent } from './components/relatorios/relatorios.component';
+import { SpotComponent } from './components/spot/spot.component';
+import { ModalRegisterComponent } from './components/modal-register/modal-register.component';
 
 const routes: Routes = [
-   { path: '/', component: CardComponent },
+  {path: '', component: SpotComponent},
+  {path: 'relatorios', component: RelatoriosComponent},
 ];
 
 @NgModule({

@@ -1,3 +1,23 @@
+<div class=boxInfoVacancies>
+  <div class="header">
+    <img src="/assets/parkingIcon.svg" alt="" />
+    <div>
+      <h1>Total</h1>
+      <h2>30</h2>
+    </div>
+  </div>
+  <div class=infosVacancies>
+    <div>
+      <h1>Disponiveis</h1>
+      <h2>28</h2>
+    </div>
+    <div>
+      <h1>Ocupadas</h1>
+      <h2>2</h2>
+    </div>
+  </div>
+</div>
+
 <div class="container">
     <div class=block>
         <h1>PÁTIO</h1>
@@ -6,6 +26,7 @@
           <div *ngFor="let vaga of vagas">
             
             <app-modal-register
+            (click)="modalStatus.setModal(true)"
             *ngIf="modalStatus.getModal() == true"
             [vagaAtual]="vaga"
             />

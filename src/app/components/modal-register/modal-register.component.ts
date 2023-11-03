@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Vagas } from 'src/app/interfaces/Vagas';
 import { SharedService } from 'src/app/services/shared.service';
 import { SpotService } from 'src/app/services/spot.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-modal-register',
@@ -16,7 +18,10 @@ export class ModalRegisterComponent implements OnInit {
   formGroup!: FormGroup;
   @Input() vagaAtual!: Vagas
 
-  constructor(public service: SharedService, private formBuilder: FormBuilder, private spotService: SpotService) {}
+  constructor(public service: SharedService,
+              private formBuilder: FormBuilder,
+              private spotService: SpotService,
+              private router: Router) {}
 
   ngOnInit(): void {
     
@@ -29,12 +34,13 @@ export class ModalRegisterComponent implements OnInit {
       vaga: [this.service.getVagaAtual()!.id, Validators.required],
 
     })
+
   }
 
   salvar() {
 
     this.spotService.salvarCliente(this.formGroup.value).subscribe(cliente => {
-      alert('Cliente cadastrado!')
+      this.router.navigate(['/'])
     },
     
     error => {
@@ -47,13 +53,14 @@ export class ModalRegisterComponent implements OnInit {
 
   finalizarPeriodo() {
     this.spotService.finalizar(this.service.getVagaAtual()?.id).subscribe(() => {
-      alert('Cliente finalizado')
+      this.router.navigate(['/'])
     },
     
     (error) => {
       alert('Falha ao finalizar' + JSON.stringify(error))
     }
     )
+
   }
 
 }
