@@ -9,9 +9,10 @@ import { FinanceiroComponent } from './components/financeiro/financeiro.componen
 import { SpotComponent } from './components/spot/spot.component';
 import { CardComponent } from './components/card/card.component';
 import { ModalRegisterComponent } from './components/modal-register/modal-register.component';
-import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     FinanceiroComponent,
     SpotComponent,
     CardComponent,
-    ModalRegisterComponent
+    ModalRegisterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
