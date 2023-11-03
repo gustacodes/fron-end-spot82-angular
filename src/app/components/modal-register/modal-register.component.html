@@ -13,15 +13,7 @@
     </div>
     <div class="div_inputs">
       <div class="blockInput">
-        <div
-        *ngIf="
-        service.getVagaAtual()?.cliente;
-        then HaCliente;
-        else SemCliente
-        "
-        >
-      
-      </div>
+        <div *ngIf="service.getVagaAtual()?.cliente; then HaCliente; else SemCliente"></div>
         
         <ng-template #HaCliente>
             <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()" >

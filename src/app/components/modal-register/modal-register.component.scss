@@ -1,5 +1,4 @@
 .modal {
-
   .div_bakground{
     width: 100vw;
     height: 100vh;
@@ -39,7 +38,8 @@
         
       }
     }
-    label {
+    label {      
+      display: flex;
       font-weight: bold;
       margin-right: 5px;
     }
@@ -110,7 +110,8 @@
     
     input{      
       margin: 5px;
-      padding: 14px 16px;
+      padding: 14px 190px;
+      text-align: start;
       align-items: center;
       gap: 8px;
       align-self: stretch;

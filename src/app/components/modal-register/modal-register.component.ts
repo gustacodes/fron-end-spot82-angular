@@ -14,7 +14,6 @@ export class ModalRegisterComponent implements OnInit {
 
   @Input() modalAberto?: boolean;
   formGroup!: FormGroup;
-  @Input() vagaModal!: Vagas;
   @Input() vagaAtual!: Vagas
 
   constructor(public service: SharedService, private formBuilder: FormBuilder, private spotService: SpotService) {}
