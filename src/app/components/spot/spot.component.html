@@ -1,0 +1,23 @@
+<div class="container">
+    <div class=block>
+        <h1>VAGAS</h1>
+        <section class=boxVacancies>
+
+          <div *ngFor="let vaga of vagas">
+            
+            <app-modal-register
+            *ngIf="modalStatus.getModal() == true"
+            [vagaAtual]="vaga"
+            />
+
+            <app-card
+            (click)="modalStatus.setModal(true)"
+            [vagaCard]="vaga"
+            (click)="modalStatus.setVagaAtual(vaga)"
+            />
+
+          </div>
+
+        </section>
+      </div>
+</div>

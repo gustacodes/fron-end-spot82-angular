@@ -1,0 +1,40 @@
+<div class="modal">
+  <div class="div_bakground" (click)="modalStatus.setModal(false)">
+      </div>
+      <div class="div_modal">
+        <div class="header">
+          <h1>VAGA: {{modalStatus.getVagaAtual()?.id}}</h1>
+          <button (click)="modalStatus.setModal(false)" class="button_close" type="button">
+            <img src="../../../assets/emblemunreadable_93487.svg" alt="">
+          </button>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+          <div class="div_inputs">
+              <div class="blockInput">
+
+                <label>NOME:</label>
+                <input type="text" formControlName="nome" placeholder="Cliente">
+                <label>VEÍCULO:</label>
+                <input type="text" formControlName="veiculo" placeholder="Veiculo">
+                <label>TIPO:</label>
+                <input type="text" formControlName="tipo" placeholder="Carro/Moto">
+                <label>PLACA:</label>
+                <input type="text" formControlName="placa" placeholder="Placa">
+  
+                  <!-- <label for="formaDePagamento" [ngStyle]="{ 'color': 'var(--color-background-dark)' } ">PAGAMENTO:</label>
+                  <select name="formaDePagamento" id="formaDePagamento"
+                    class="selectPagamento">
+                    <option value="DINHEIRO">DINHEIRO</option>
+                    <option value="DEBITO">DEBITO</option>
+                    <option value="CREDITO">CREDITO</option>
+                    <option value="PIX">PIX</option>
+                  </select> -->
+                </div>
+              </div>
+              <div class="div_buttons">
+                <button class="button_close" (click)="modalStatus.setModal(false)" type="button">Cancelar</button>
+                <button class="buttonSubmit" type="submit">Registrar</button>
+              </div>
+            </form>
+          </div>
+</div>

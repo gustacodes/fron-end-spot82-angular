@@ -1,0 +1,11 @@
+<div class="div_card" [ngStyle]="{ 'background-color': vagaCard.statusDaVaga === 'DISPONIVEL' ? 'green' : 'red' }">
+    <h2 *ngIf="vagaCard.statusDaVaga == 'DISPONIVEL'">DISPONÍVEL</h2>
+    <h2 *ngIf="vagaCard.statusDaVaga == 'DISPONIVEL'" class="vancancyNumber">{{vagaCard.id}}</h2>
+    <div *ngIf="vagaCard.statusDaVaga == 'OCUPADA'">
+
+        <h2>{{vagaCard.cliente.veiculo}}</h2>
+        <img src="./assets/car_icon.svg" alt="">
+        <h2>{{vagaCard.cliente.placa}}</h2>
+        </div>
+
+    </div>
