@@ -23,11 +23,11 @@ export class ModalRegisterComponent implements OnInit {
     
     this.formGroup = this.formBuilder.group({
       
-      nome: ['', Validators.required],
-      veiculo: ['', Validators.required],
-      tipo: ['', Validators.required],
-      placa: ['', Validators.required],
-      vaga: [4, Validators.required],
+      nome: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.nome : '', Validators.required],
+      veiculo: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.veiculo : '', Validators.required],
+      tipo: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.tipo : '', Validators.required],
+      placa: [this.modalStatus.getVagaAtual()!.cliente ? this.modalStatus.getVagaAtual()!.cliente.placa : '', Validators.required],
+      vaga: [this.modalStatus.getVagaAtual()!.id, Validators.required],
 
     })
   }
