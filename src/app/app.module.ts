@@ -9,7 +9,6 @@ import { FinanceiroComponent } from './components/financeiro/financeiro.componen
 import { SpotComponent } from './components/spot/spot.component';
 import { CardComponent } from './components/card/card.component';
 import { ModalRegisterComponent } from './components/modal-register/modal-register.component';
-import { InputComponent } from './components/input/input.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -22,8 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     FinanceiroComponent,
     SpotComponent,
     CardComponent,
-    ModalRegisterComponent,
-    InputComponent
+    ModalRegisterComponent
   ],
   imports: [
     BrowserModule,
