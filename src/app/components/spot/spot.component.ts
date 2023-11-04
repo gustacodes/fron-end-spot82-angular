@@ -22,7 +22,12 @@ export class SpotComponent implements OnInit {
   constructor(private spotService: SpotService, public modalStatus: SharedService) {}
 
   ngOnInit(): void {
+    
+    this.listarVagas()
+    
+  }
 
+  listarVagas() {
     this.spotService.getVagas().subscribe((spot => {
       this.vagas = spot
 

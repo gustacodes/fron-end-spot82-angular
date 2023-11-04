@@ -3,31 +3,31 @@
     <img src="/assets/cartao_icon.svg" alt="" />
     <div>
       <h1>Pagamentos</h1>
-      <h2>do dia</h2>
+      <h2>Hoje: {{dataAtual.getDate()}} do {{dataAtual.getMonth() + 1}} de {{dataAtual.getFullYear()}}</h2>
     </div>
     <div class="saldo">
       <img src="/assets/MoneyIcon.svg" alt="" />
       <h1>Saldo {{ rendimentoDoDia }}.00</h1>
     </div>
   </div>
-  <div class="infosVacancies">
+  <div class="infosVacancies" >
     <div>
       <h1>Crédito</h1>
-      <h2>R$ A definir</h2>
+      <h2>R$ {{ pagamentoCredito }}</h2>
     </div>
     <div>
       <h1>Débito</h1>
-      <h2>R$ A definir</h2>
+      <h2>R$ {{ pagamentoDebito }}</h2>
     </div>
   </div><br>
   <div class="infosVacancies">
     <div>
       <h1>Dinheiro</h1>
-      <h2>R$ A definir</h2>
+      <h2>R$ {{ pagamentoDinheiro }}</h2>
     </div>
     <div>
       <h1>PIX</h1>
-      <h2>R$ A definir</h2>
+      <h2>R$ {{ pagamentoPix }}</h2>
     </div>
   </div>
   

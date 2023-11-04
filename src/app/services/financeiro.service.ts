@@ -17,4 +17,8 @@ export class FinanceiroService {
     return this.http.get<Pagamento>(`${this.URL}/financeiro/dia`)
   }
 
+  getFormaDePagamentoDia(): Observable<Pagamento[]> {
+    return this.http.get<Pagamento[]>(`${this.URL}/estacionamentos/pagamentos`)
+  }
+
 }
