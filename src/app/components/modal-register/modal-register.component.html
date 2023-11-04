@@ -52,7 +52,8 @@
               >PAGAMENTO:</label
             >
             <select
-              name="formaDePagamento"
+              (change)="onSelectChange($event)"
+              formControlName="formaDePagamento"
               id="formaDePagamento"
               class="selectPagamento"
             >
@@ -60,6 +61,7 @@
               <option value="DEBITO">DEBITO</option>
               <option value="CREDITO">CREDITO</option>
               <option value="PIX">PIX</option>
+
             </select>
 
             <div class="div_buttons">

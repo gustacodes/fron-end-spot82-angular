@@ -5,6 +5,7 @@ import { Vagas } from 'src/app/interfaces/Vagas';
 import { SharedService } from 'src/app/services/shared.service';
 import { SpotService } from 'src/app/services/spot.service';
 import { Location } from '@angular/common';
+import { FormaDePagamento } from 'src/app/interfaces/FormaDePagamento';
 
 @Component({
   selector: 'app-modal-register',
@@ -32,9 +33,15 @@ export class ModalRegisterComponent implements OnInit {
       tipo: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.tipo : '', Validators.required],
       placa: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.placa : '', Validators.required],
       vaga: [this.service.getVagaAtual()!.id, Validators.required],
-
+      formaDePagamento: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()?.cliente.pagamento?.formaDePagamento : FormaDePagamento.DEFINIR]
+      
     })
 
+  }
+
+  onSelectChange(event: Event) {
+    const valorSelecionado = (event.target as HTMLSelectElement).value;
+    console.log('Valor selecionado:', valorSelecionado);
   }
 
   salvar() {

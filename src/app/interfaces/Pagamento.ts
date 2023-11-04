@@ -1,6 +1,6 @@
 export class Pagamento {
     id!: number
     data!: string
-    formaDePagamento!: 'CARTAO'
+    formaDePagamento!: string
     pagamento?: number
 }
