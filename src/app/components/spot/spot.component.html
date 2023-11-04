@@ -1,19 +1,19 @@
-<div class=boxInfoVacancies>
+<div class=boxInfoVacancies >
   <div class="header">
-    <img src="/assets/parkingIcon.svg" alt="" />
+    <img src="/assets/car_icon_card.svg" alt="" />
     <div>
       <h1>Total</h1>
-      <h2>30</h2>
+      <h2>{{vagas.length}}</h2>
     </div>
   </div>
   <div class=infosVacancies>
     <div>
       <h1>Disponiveis</h1>
-      <h2>28</h2>
+      <h2>{{vagas.length - vagasOcupadas}}</h2>
     </div>
     <div>
       <h1>Ocupadas</h1>
-      <h2>2</h2>
+      <h2>{{vagasOcupadas}}</h2>
     </div>
   </div>
 </div>

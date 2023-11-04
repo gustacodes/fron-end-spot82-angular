@@ -16,6 +16,7 @@ export class SpotComponent implements OnInit {
   clientes: Cliente [] = []
   available!: "DISPONIVEL" | "OCUPADA";
   modalAberto: boolean = false;
+  vagasOcupadas: number = 0;
   @Input() vagaAtual!: Vagas
 
   constructor(private spotService: SpotService, public modalStatus: SharedService) {}
@@ -29,6 +30,7 @@ export class SpotComponent implements OnInit {
 
         if (c.cliente) {
           this.clientes = [...this.clientes, c.cliente];
+          this.vagasOcupadas++
         }
         
       })
