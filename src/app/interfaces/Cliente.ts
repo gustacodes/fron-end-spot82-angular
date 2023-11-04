@@ -11,5 +11,5 @@ export class Cliente {
     horaEntrada!: string
     horaSaida?: string
     periodo?: string
-    pagamento?: Pagamento
+    pagamento?: string
 }

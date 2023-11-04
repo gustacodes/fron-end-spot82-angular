@@ -1,7 +1,8 @@
 export enum FormaDePagamento {
-    DEFINIR,
-    DINHEIRO,
+    
     DEBITO,
+    DINHEIRO,
     CREDITO,
     PIX
+
 }

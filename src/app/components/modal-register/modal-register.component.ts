@@ -33,15 +33,10 @@ export class ModalRegisterComponent implements OnInit {
       tipo: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.tipo : '', Validators.required],
       placa: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.placa : '', Validators.required],
       vaga: [this.service.getVagaAtual()!.id, Validators.required],
-      formaDePagamento: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()?.cliente.pagamento?.formaDePagamento : FormaDePagamento.DEFINIR]
+      formaDePagamento: [this.service.getVagaAtual()!.cliente ? this.service.getVagaAtual()!.cliente.pagamento : '']
       
     })
 
-  }
-
-  onSelectChange(event: Event) {
-    const valorSelecionado = (event.target as HTMLSelectElement).value;
-    console.log('Valor selecionado:', valorSelecionado);
   }
 
   salvar() {
@@ -59,8 +54,8 @@ export class ModalRegisterComponent implements OnInit {
   }
 
   finalizarPeriodo() {
-    this.spotService.finalizar(this.service.getVagaAtual()?.id).subscribe(() => {
-      this.router.navigate(['/'])
+    this.spotService.finalizar(this.service.getVagaAtual()?.id, this.formGroup.get('formaDePagamento')?.value).subscribe(() => {
+      
     },
     
     (error) => {
