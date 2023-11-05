@@ -1,29 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Urbanist:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Urbanist:wght@300;400;500;600;700&display=swap");
 @font-face {
-  font-family: 'grunge';
-  src: url('/assets/Grunges.ttf');
+  font-family: "grunge";
+  src: url("/assets/Grunges.ttf");
 }
 
-
 :root {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 400;
 
   --color-background-dark: #24292f;
   --color-title-yellow: #ebc556;
   --color-title-yellow-hover: #ecc140;
   --color-text-white: #f7f9f8;
-  
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  
 }
 
-body{
+body {
   width: 100vw;
   background-color: var(--color-background-dark);
+}
+
+.validation-error p {
+  font-weight: bold;
+  font-size: 15px;
+  color: #dc3545;
+  margin-top: 0.4em;
+  border-left: 3px solid #dc3545;
+  padding-left: 0.2em;
 }

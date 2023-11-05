@@ -1,44 +1,40 @@
-<div class=boxInfoVacancies >
+<div class="boxInfoVacancies">
   <div class="header">
     <img src="/assets/car_icon_card.svg" alt="" />
     <div>
       <h1>Total</h1>
-      <h2>{{vagas.length}}</h2>
+      <h2>{{ vagas.length }}</h2>
     </div>
   </div>
-  <div class=infosVacancies>
+  <div class="infosVacancies">
     <div>
       <h1>Disponiveis</h1>
-      <h2>{{vagas.length - vagasOcupadas}}</h2>
+      <h2>{{ vagas.length - vagasOcupadas }}</h2>
     </div>
     <div>
       <h1>Ocupadas</h1>
-      <h2>{{vagasOcupadas}}</h2>
+      <h2>{{ vagasOcupadas }}</h2>
     </div>
   </div>
 </div>
 
 <div class="container">
-    <div class=block>
-        <h1>PÁTIO</h1>
-        <section class=boxVacancies>
+  <div class="block">
+    <h1>PÁTIO</h1>
+    <section class="boxVacancies">
+      <div *ngFor="let vaga of vagas">
+        <app-modal-register
+          (click)="modalStatus.setModal(true)"
+          *ngIf="modalStatus.getModal() == true"
+          [vagaAtual]="vaga"
+        />
 
-          <div *ngFor="let vaga of vagas">
-            
-            <app-modal-register
-            (click)="modalStatus.setModal(true)"
-            *ngIf="modalStatus.getModal() == true"
-            [vagaAtual]="vaga"
-            />
-
-            <app-card
-            (click)="modalStatus.setModal(true)"
-            [vagaCard]="vaga"
-            (click)="modalStatus.setVagaAtual(vaga)"
-            />
-
-          </div>
-
-        </section>
+        <app-card
+          (click)="modalStatus.setModal(true)"
+          [vagaCard]="vaga"
+          (click)="modalStatus.setVagaAtual(vaga)"
+        />
       </div>
+    </section>
+  </div>
 </div>

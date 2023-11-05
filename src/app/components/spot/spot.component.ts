@@ -7,40 +7,35 @@ import { SpotService } from 'src/app/services/spot.service';
 @Component({
   selector: 'app-spot',
   templateUrl: './spot.component.html',
-  styleUrls: ['./spot.component.scss']
+  styleUrls: ['./spot.component.scss'],
 })
-
 export class SpotComponent implements OnInit {
-
-  vagas: Vagas [] = []
-  clientes: Cliente [] = []
-  available!: "DISPONIVEL" | "OCUPADA";
+  vagas: Vagas[] = [];
+  clientes: Cliente[] = [];
+  available!: 'DISPONIVEL' | 'OCUPADA';
   modalAberto: boolean = false;
   vagasOcupadas: number = 0;
-  @Input() vagaAtual!: Vagas
+  @Input() vagaAtual!: Vagas;
 
-  constructor(private spotService: SpotService, public modalStatus: SharedService) {}
+  constructor(
+    private spotService: SpotService,
+    public modalStatus: SharedService
+  ) {}
 
   ngOnInit(): void {
-    
-    this.listarVagas()
-    
+    this.listarVagas();
   }
 
   listarVagas() {
-    this.spotService.getVagas().subscribe((spot => {
-      this.vagas = spot
+    this.spotService.getVagas().subscribe((spot) => {
+      this.vagas = spot;
 
-      spot.map(c => {
-
+      spot.map((c) => {
         if (c.cliente) {
           this.clientes = [...this.clientes, c.cliente];
-          this.vagasOcupadas++
+          this.vagasOcupadas++;
         }
-        
-      })
-      
-    }))
+      });
+    });
   }
-
 }

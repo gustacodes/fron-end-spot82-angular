@@ -13,10 +13,16 @@
     </div>
     <div class="div_inputs">
       <div class="blockInput">
-        <div *ngIf="service.getVagaAtual()?.cliente; then HaCliente; else SemCliente"></div>
-        
+        <div
+          *ngIf="
+            service.getVagaAtual()?.cliente;
+            then HaCliente;
+            else SemCliente
+          "
+        ></div>
+
         <ng-template #HaCliente>
-            <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()" >
+          <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()">
             <!-- Conteúdo exibido quando a condição é verdadeira -->
             <label>NOME:</label>
             <input
@@ -51,73 +57,99 @@
               [ngStyle]="{ color: 'var(--color-background-dark)' }"
               >PAGAMENTO:</label
             >
-            <select
-              formControlName="formaDePagamento"
-              class="selectPagamento"
-            >
+            <select formControlName="formaDePagamento" class="selectPagamento">
               <option value="DINHEIRO">DINHEIRO</option>
               <option value="DEBITO">DEBITO</option>
               <option value="CREDITO">CREDITO</option>
               <option value="PIX">PIX</option>
-
             </select>
 
             <div class="div_buttons">
               <button
                 class="button_close"
                 (click)="service.setModal(false)"
-                type="button">
+                type="button"
+              >
                 CANCELAR
               </button>
               <button class="buttonSubmit" type="submit">FINALIZAR</button>
             </div>
-            </form>
-          </ng-template>
+          </form>
+        </ng-template>
 
-          <ng-template #SemCliente>
-            <form [formGroup]="formGroup" (ngSubmit)="salvar()" >
+        <ng-template #SemCliente>
+          <form [formGroup]="formGroup" (ngSubmit)="salvar()" #formDir="ngForm">
             <!-- Conteúdo exibido quando a condição é falsa (bloco else) -->
+
             <label>NOME:</label>
             <input
-            type="text"
-            formControlName="nome"
-            placeholder="Cliente"
+              type="text"
+              formControlName="nome"
+              placeholder="Cliente"
+              required
             />
+            <div
+              *ngIf="nome.invalid && formDir.submitted"
+              class="validation-error"
+            >
+              <p>Nome do cliente é obrigatório.</p>
+            </div>
 
             <label>VEÍCULO:</label>
             <input
               type="text"
               formControlName="veiculo"
               placeholder="Veiculo"
+              required
             />
+            <div
+              *ngIf="veiculo.invalid && formDir.submitted"
+              class="validation-error"
+            >
+              <p>Nome do veículo é obrigatório.</p>
+            </div>
 
             <label>TIPO:</label>
             <input
               type="text"
               formControlName="tipo"
               placeholder="Carro/Moto"
+              required
             />
+            <div
+              *ngIf="tipo.invalid && formDir.submitted"
+              class="validation-error"
+            >
+              <p>O tipo é obrigatório.</p>
+            </div>
 
             <label>PLACA:</label>
             <input
-            type="text"
-            formControlName="placa"
-            placeholder="Placa"
+              type="text"
+              formControlName="placa"
+              placeholder="Placa"
+              required
             />
+            <div
+              *ngIf="placa.invalid && formDir.submitted"
+              class="validation-error"
+            >
+              <p>A placa é obrigatória.</p>
+            </div>
 
             <div class="div_buttons">
               <button
                 class="button_close"
                 (click)="service.setModal(false)"
-                type="button">
+                type="button"
+              >
                 CANCELAR
               </button>
               <button class="buttonSubmit" type="submit">REGISTRAR</button>
             </div>
-            
           </form>
-          </ng-template>
-        </div>
+        </ng-template>
       </div>
+    </div>
   </div>
 </div>
