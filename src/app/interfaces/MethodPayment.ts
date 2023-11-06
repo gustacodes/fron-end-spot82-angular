@@ -1,4 +1,4 @@
-export enum FormaDePagamento {
+export enum MethodPayment {
     
     DEBITO,
     DINHEIRO,

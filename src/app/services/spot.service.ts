@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Vagas } from '../interfaces/Vagas';
-import { Cliente } from '../interfaces/Cliente';
+import { Client } from '../interfaces/Client';
+import { Spots } from '../interfaces/Spots';
 
 @Injectable({
   providedIn: 'root'
@@ -16,20 +16,20 @@ export class SpotService {
 
   constructor(private http: HttpClient) { }
 
-  getVagas(): Observable<Vagas[]> {
-    return this.http.get<Vagas[]>(`${this.baseApiUrl}/estacionamentos/vagas`);
+  getSpots(): Observable<Spots[]> {
+    return this.http.get<Spots[]>(`${this.baseApiUrl}/estacionamentos/vagas`);
   }
 
-  finalizar(id: number | undefined, formaDePagamento: string | undefined){
-    return this.http.delete<Cliente>(`${this.baseApiUrl}/clientes/recibo/${id}/${formaDePagamento}`)
+  end(id: number | undefined, methodPayment: string | undefined){
+    return this.http.delete<Client>(`${this.baseApiUrl}/clientes/recibo/${id}/${methodPayment}`)
   }
 
-  getVagaById(id: number): Observable<Vagas> {
-    return this.http.get<Vagas>(`${this.baseApiUrl}/estacionamentos/vagas/${id}`);
+  getSpotByid(id: number): Observable<Spots> {
+    return this.http.get<Spots>(`${this.baseApiUrl}/estacionamentos/vagas/${id}`);
   }
 
-  salvarCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(`${this.baseApiUrl}/clientes`, cliente);
+  saveClient(client: Client): Observable<Client> {
+    return this.http.post<Client>(`${this.baseApiUrl}/clientes`, client);
   }
 
 }

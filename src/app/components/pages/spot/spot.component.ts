@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Cliente } from 'src/app/interfaces/Cliente';
-import { Vagas } from 'src/app/interfaces/Vagas';
+import { Client } from 'src/app/interfaces/Client';
+import { Spots } from 'src/app/interfaces/Spots';
 import { SharedService } from 'src/app/services/shared.service';
 import { SpotService } from 'src/app/services/spot.service';
 
@@ -10,12 +10,12 @@ import { SpotService } from 'src/app/services/spot.service';
   styleUrls: ['./spot.component.scss'],
 })
 export class SpotComponent implements OnInit {
-  vagas: Vagas[] = [];
-  clientes: Cliente[] = [];
+  spots: Spots[] = [];
+  clients: Client[] = [];
   available!: 'DISPONIVEL' | 'OCUPADA';
-  modalAberto: boolean = false;
-  vagasOcupadas: number = 0;
-  @Input() vagaAtual!: Vagas;
+  modalOpen: boolean = false;
+  spotBusy: number = 0;
+  @Input() spotActual!: Spots;
 
   constructor(
     private spotService: SpotService,
@@ -27,13 +27,13 @@ export class SpotComponent implements OnInit {
   }
 
   listarVagas() {
-    this.spotService.getVagas().subscribe((spot) => {
-      this.vagas = spot;
+    this.spotService.getSpots().subscribe((spot) => {
+      this.spots = spot;
 
       spot.map((c) => {
-        if (c.cliente) {
-          this.clientes = [...this.clientes, c.cliente];
-          this.vagasOcupadas++;
+        if (c.client) {
+          this.clients = [...this.clients, c.client];
+          this.spotBusy++;
         }
       });
     });

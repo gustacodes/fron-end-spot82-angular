@@ -1,4 +1,4 @@
-export interface Response<T> {
-    string: MessageChannel,
-    data: T
-}
+// export interface Response<T> {
+//     string: MessageChannel,
+//     data: T
+// }

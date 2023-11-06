@@ -1,11 +1,11 @@
-<div class="div_card" [ngStyle]="{ 'background-color': vagaCard.statusDaVaga === 'DISPONIVEL' ? 'green' : 'red' }">
-    <h2 *ngIf="vagaCard.statusDaVaga == 'DISPONIVEL'">DISPONÍVEL</h2>
-    <h2 *ngIf="vagaCard.statusDaVaga == 'DISPONIVEL'" class="vancancyNumber">{{vagaCard.id}}</h2>
-    <div *ngIf="vagaCard.statusDaVaga == 'OCUPADA'">
+<div class="div_card" [ngStyle]="{ 'background-color': spotCard.statusSpot === 'DISPONIVEL' ? 'green' : 'red' }">
+    <h2 *ngIf="spotCard.statusSpot == 'DISPONIVEL'">DISPONÍVEL</h2>
+    <h2 *ngIf="spotCard.statusSpot == 'DISPONIVEL'" class="vancancyNumber">{{spotCard.id}}</h2>
+    <div *ngIf="spotCard.statusSpot == 'OCUPADA'">
 
-        <h2>{{vagaCard.cliente.veiculo}}</h2>
+        <h2>{{spotCard.client.vehicle}}</h2>
         <img src="./assets/car_icon.svg" alt="">
-        <h2>{{vagaCard.cliente.placa}}</h2>
+        <h2>{{spotCard.client.plate}}</h2>
         </div>
 
 </div>

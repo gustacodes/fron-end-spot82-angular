@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Vagas } from '../interfaces/Vagas';
+import { Spots } from '../interfaces/Spots';
 
 @Injectable({
   providedIn: 'root'
@@ -7,25 +7,25 @@ import { Vagas } from '../interfaces/Vagas';
 
 export class SharedService {
 
-  modalAberto: boolean = false;
-  vagaAtual?: Vagas
+  modalOpen: boolean = false;
+  spotActual?: Spots
 
   constructor() { }
 
   setModal(modalStatus: boolean) {
-    this.modalAberto = modalStatus
+    this.modalOpen = modalStatus
   }
 
   getModal() {
-    return this.modalAberto;
+    return this.modalOpen;
   }
 
-  setVagaAtual(vaga: Vagas) {
-    this.vagaAtual = vaga
+  setSpotActual(spot: Spots) {
+    this.spotActual = spot
   }
 
-  getVagaAtual() {
-    return this.vagaAtual
+  getSpotActual() {
+    return this.spotActual
   }
 
 }

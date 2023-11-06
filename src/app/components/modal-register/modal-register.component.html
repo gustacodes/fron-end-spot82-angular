@@ -2,7 +2,7 @@
   <div class="div_bakground" (click)="service.setModal(false)"></div>
   <div class="div_modal">
     <div class="header">
-      <h1>VAGA: [{{ service.getVagaAtual()?.id }}]</h1>
+      <h1>VAGA: [{{ service.getSpotActual()?.id }}]</h1>
       <button
         (click)="service.setModal(false)"
         class="button_close"
@@ -15,49 +15,49 @@
       <div class="blockInput">
         <div
           *ngIf="
-            service.getVagaAtual()?.cliente;
+            service.getSpotActual()?.client;
             then HaCliente;
             else SemCliente
           "
         ></div>
 
         <ng-template #HaCliente>
-          <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()" #formDir="ngForm">
+          <form [formGroup]="formGroup" (ngSubmit)="endPeriod()" #formDir="ngForm">
             <!-- Conteúdo exibido quando a condição é verdadeira -->
             <label>NOME:</label>
             <input
               type="text"
-              formControlName="nome"
+              formControlName="name"
               placeholder="Cliente"
               readonly
             />
             <label>VEÍCULO:</label>
             <input
               type="text"
-              formControlName="veiculo"
-              placeholder="Veiculo"
+              formControlName="vehicle"
+              placeholder="Veículo"
               readonly
             />
             <label>TIPO:</label>
             <input
               type="text"
-              formControlName="tipo"
+              formControlName="type"
               placeholder="Carro/Moto"
               readonly
             />
             <label>PLACA:</label>
             <input
               type="text"
-              formControlName="placa"
+              formControlName="plate"
               placeholder="Placa"
               readonly
             />
             <label
-              for="formaDePagamento"
+              for="methodPayment"
               [ngStyle]="{ color: 'var(--color-background-dark)' }"
               >PAGAMENTO:</label
             >
-            <select formControlName="formaDePagamento" class="selectPagamento">
+            <select formControlName="methodPayment" class="selectPagamento">
               <option value="DINHEIRO">DINHEIRO</option>
               <option value="DEBITO">DEBITO</option>
               <option value="CREDITO">CREDITO</option>
@@ -85,18 +85,18 @@
         </ng-template>
 
         <ng-template #SemCliente>
-          <form [formGroup]="formGroup" (ngSubmit)="salvar()" #formDir="ngForm">
+          <form [formGroup]="formGroup" (ngSubmit)="save()" #formDir="ngForm">
             <!-- Conteúdo exibido quando a condição é falsa (bloco else) -->
 
             <label>NOME:</label>
             <input
               type="text"
-              formControlName="nome"
+              formControlName="name"
               placeholder="Ex: João da Silva"
               required
             />
             <div
-              *ngIf="nome.invalid && formDir.submitted"
+              *ngIf="name.invalid && formDir.submitted"
               class="validation-error"
             >
               <p>Nome do cliente é obrigatório.</p>
@@ -105,12 +105,12 @@
             <label>VEÍCULO:</label>
             <input
               type="text"
-              formControlName="veiculo"
+              formControlName="vehicle"
               placeholder="Ex: Gol, Uno, Palio"
               required
             />
             <div
-              *ngIf="veiculo.invalid && formDir.submitted"
+              *ngIf="vehicle.invalid && formDir.submitted"
               class="validation-error"
             >
               <p>Nome do veículo é obrigatório.</p>
@@ -119,25 +119,25 @@
             <label>PLACA:</label>
             <input
               type="text"
-              formControlName="placa"
+              formControlName="plate"
               placeholder="Ex: ABC-1234 / ABC 1A23"
               required
             />
             <div
-              *ngIf="placa.invalid && formDir.submitted"
+              *ngIf="plate.invalid && formDir.submitted"
               class="validation-error"
             >
               <p>A placa é obrigatória.</p>
             </div>
 
             <label>TIPO:</label>
-            <select formControlName="tipo" class="selectPagamento">
+            <select formControlName="type" class="selectPagamento">
               <option value="CARRO">CARRO</option>
               <option value="MOTO">MOTO</option>
             </select>
 
             <div
-              *ngIf="tipo.invalid && formDir.submitted"
+              *ngIf="type.invalid && formDir.submitted"
               class="validation-error"
             >
               <p>O tipo é obrigatório.</p>

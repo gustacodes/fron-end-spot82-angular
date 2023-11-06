@@ -3,17 +3,17 @@
     <img src="/assets/car_icon_card.svg" alt="" />
     <div>
       <h1>Total</h1>
-      <h2>{{ vagas.length }}</h2>
+      <h2>{{ spots.length }}</h2>
     </div>
   </div>
   <div class="infosVacancies">
     <div>
       <h1>Disponiveis</h1>
-      <h2>{{ vagas.length - vagasOcupadas }}</h2>
+      <h2>{{ spots.length - spotBusy }}</h2>
     </div>
     <div>
       <h1>Ocupadas</h1>
-      <h2>{{ vagasOcupadas }}</h2>
+      <h2>{{ spotBusy }}</h2>
     </div>
   </div>
 </div>
@@ -22,17 +22,17 @@
   <div class="block">
     <h1>PÁTIO</h1>
     <section class="boxVacancies">
-      <div *ngFor="let vaga of vagas">
+      <div *ngFor="let spot of spots">
         <app-modal-register
           (click)="modalStatus.setModal(true)"
           *ngIf="modalStatus.getModal() == true"
-          [vagaAtual]="vaga"
+          [spotActual]="spot"
         />
 
         <app-card
           (click)="modalStatus.setModal(true)"
-          [vagaCard]="vaga"
-          (click)="modalStatus.setVagaAtual(vaga)"
+          [spotCard]="spot"
+          (click)="modalStatus.setSpotActual(spot)"
         />
       </div>
     </section>

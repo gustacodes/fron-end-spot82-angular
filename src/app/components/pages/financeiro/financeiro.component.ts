@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pagamento } from 'src/app/interfaces/Pagamento';
+import { Payment } from 'src/app/interfaces/Payment';
 import { FinanceiroService } from 'src/app/services/financeiro.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { FinanceiroService } from 'src/app/services/financeiro.service';
   styleUrls: ['./financeiro.component.scss'],
 })
 export class FinanceiroComponent {
-  rendimentoDoDia?: Pagamento;
-  tipoPagamentoDia: Pagamento [] = [];
+  rendimentoDoDia?: Payment;
+  tipoPagamentoDia: Payment [] = [];
   pagamentoDebito: number = 0
   pagamentoPix: number = 0
   pagamentoDinheiro: number = 0
@@ -25,19 +25,19 @@ export class FinanceiroComponent {
   }
 
   getFinanceiro() {
-    this.financeiroService.getFinanceiroDia().subscribe((pagamentoDia) => {
+    this.financeiroService.getFinancialDay().subscribe((pagamentoDia) => {
       this.rendimentoDoDia = pagamentoDia;
     });
   }
 
   get() {
-    this.financeiroService.getFormaDePagamentoDia().subscribe(tipo => {
+    this.financeiroService.getPaymentMethodDay().subscribe(tipo => {
       this.tipoPagamentoDia = tipo;
       this.tipoPagamentoDia.forEach((item) => {
-        item.formaDePagamento == 'DEBITO' ? this.pagamentoDebito += Number(item.pagamento) : null
-        item.formaDePagamento == 'PIX' ? this.pagamentoPix += Number(item.pagamento) : null
-        item.formaDePagamento == 'CREDITO' ? this.pagamentoCredito += Number(item.pagamento) : null
-        item.formaDePagamento == 'DINHEIRO' ? this.pagamentoDinheiro += Number(item.pagamento) : null
+        item.methodPayment == 'DEBITO' ? this.pagamentoDebito += Number(item.payment) : null
+        item.methodPayment == 'PIX' ? this.pagamentoPix += Number(item.payment) : null
+        item.methodPayment == 'CREDITO' ? this.pagamentoCredito += Number(item.payment) : null
+        item.methodPayment == 'DINHEIRO' ? this.pagamentoDinheiro += Number(item.payment) : null
         console.log(item);
         
       });

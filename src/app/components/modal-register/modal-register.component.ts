@@ -1,16 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Vagas } from 'src/app/interfaces/Vagas';
+import { Spots } from 'src/app/interfaces/Spots';
 import { SharedService } from 'src/app/services/shared.service';
 import { SpotService } from 'src/app/services/spot.service';
-import { Location } from '@angular/common';
-import { FormaDePagamento } from 'src/app/interfaces/FormaDePagamento';
 
 @Component({
   selector: 'app-modal-register',
@@ -18,9 +15,10 @@ import { FormaDePagamento } from 'src/app/interfaces/FormaDePagamento';
   styleUrls: ['./modal-register.component.scss'],
 })
 export class ModalRegisterComponent implements OnInit {
-  @Input() modalAberto?: boolean;
+
+  @Input() modalOpen?: boolean;
   formGroup!: FormGroup;
-  @Input() vagaAtual!: Vagas;
+  @Input() spotActual!: Spots;
 
   constructor(
     public service: SharedService,
@@ -30,64 +28,65 @@ export class ModalRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      nome: new FormControl(
-        this.service.getVagaAtual()!.cliente
-          ? this.service.getVagaAtual()!.cliente.nome
+      name: new FormControl(
+        this.service.getSpotActual()!.client
+          ? this.service.getSpotActual()!.client.name
           : '',
         [Validators.required]
       ),
-      veiculo: new FormControl(
-        this.service.getVagaAtual()!.cliente
-          ? this.service.getVagaAtual()!.cliente.veiculo
+      vehicle: new FormControl(
+        this.service.getSpotActual()!.client
+          ? this.service.getSpotActual()!.client.vehicle
           : '',
         [Validators.required]
       ),
-      tipo: new FormControl(
-        this.service.getVagaAtual()!.cliente
-          ? this.service.getVagaAtual()!.cliente.tipo
+      type: new FormControl(
+        this.service.getSpotActual()!.client
+          ? this.service.getSpotActual()!.client.type
           : '',
         [Validators.required]
       ),
-      placa: new FormControl(
-        this.service.getVagaAtual()!.cliente
-          ? this.service.getVagaAtual()!.cliente.placa
+      plate: new FormControl(
+        this.service.getSpotActual()!.client
+          ? this.service.getSpotActual()!.client.plate
           : '',
         [Validators.required]
       ),
-      vaga: new FormControl(this.service.getVagaAtual()!.id, [
+      spot: new FormControl(this.service.getSpotActual()!.id, [
         Validators.required,
       ]),
-      formaDePagamento: new FormControl(
-        this.service.getVagaAtual()!.cliente
-          ? this.service.getVagaAtual()!.cliente.pagamento
+      methodPayment: new FormControl(
+        this.service.getSpotActual()!.client
+          ? this.service.getSpotActual()!.client.payment
           : ''
       ),
     });
   }
 
-  get nome() {
-    return this.formGroup.get('nome')!;
+  get name() {
+    return this.formGroup.get('name')!;
   }
 
-  get veiculo() {
-    return this.formGroup.get('veiculo')!;
+  get vehicle() {
+    return this.formGroup.get('vehicle')!;
   }
 
-  get tipo() {
-    return this.formGroup.get('tipo')!;
+  get type() {
+    return this.formGroup.get('type')!;
   }
 
-  get placa() {
-    return this.formGroup.get('placa')!;
+  get plate() {
+    return this.formGroup.get('plate')!;
   }
 
-  salvar() {
+  save() {
+    
     if (this.formGroup.invalid) {
       return;
     }
 
-    this.spotService.salvarCliente(this.formGroup.value).subscribe(
-      (cliente) => {
+    this.spotService.saveClient(this.formGroup.value).subscribe(
+      (client) => {
         this.router.navigate(['/']);
       },
 
@@ -97,11 +96,11 @@ export class ModalRegisterComponent implements OnInit {
     );
   }
 
-  finalizarPeriodo() {
+  endPeriod() {
     this.spotService
-      .finalizar(
-        this.service.getVagaAtual()?.id,
-        this.formGroup.get('formaDePagamento')?.value
+      .end(
+        this.service.getSpotActual()?.id,
+        this.formGroup.get('methodPayment')?.value
       )
       .subscribe(
         () => {},

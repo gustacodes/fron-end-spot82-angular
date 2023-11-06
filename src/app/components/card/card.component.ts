@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cliente } from 'src/app/interfaces/Cliente';
-import { Vagas } from 'src/app/interfaces/Vagas';
+import { Component, Input } from '@angular/core';
+import { Spots } from 'src/app/interfaces/Spots';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class CardComponent {
 
-  @Input() vagaCard!: Vagas;
+  @Input() spotCard!: Spots;
   available!: "DISPONIVEL" | "OCUPADA";
 
   constructor(public modalStatus: SharedService) {}
