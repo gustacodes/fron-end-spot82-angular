@@ -22,7 +22,7 @@
         ></div>
 
         <ng-template #HaCliente>
-          <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()">
+          <form [formGroup]="formGroup" (ngSubmit)="finalizarPeriodo()" #formDir="ngForm">
             <!-- Conteúdo exibido quando a condição é verdadeira -->
             <label>NOME:</label>
             <input
@@ -64,6 +64,13 @@
               <option value="PIX">PIX</option>
             </select>
 
+            <!-- <div
+              *ngIf="getFormaDePagamento() && formDir.submitted"
+              class="validation-error"
+            >
+              <p>Forma de pagamento obrigatória.</p>
+            </div> -->
+
             <div class="div_buttons">
               <button
                 class="button_close"
@@ -85,7 +92,7 @@
             <input
               type="text"
               formControlName="nome"
-              placeholder="Cliente"
+              placeholder="Ex: João da Silva"
               required
             />
             <div
@@ -99,7 +106,7 @@
             <input
               type="text"
               formControlName="veiculo"
-              placeholder="Veiculo"
+              placeholder="Ex: Gol, Uno, Palio"
               required
             />
             <div
@@ -109,25 +116,11 @@
               <p>Nome do veículo é obrigatório.</p>
             </div>
 
-            <label>TIPO:</label>
-            <input
-              type="text"
-              formControlName="tipo"
-              placeholder="Carro/Moto"
-              required
-            />
-            <div
-              *ngIf="tipo.invalid && formDir.submitted"
-              class="validation-error"
-            >
-              <p>O tipo é obrigatório.</p>
-            </div>
-
             <label>PLACA:</label>
             <input
               type="text"
               formControlName="placa"
-              placeholder="Placa"
+              placeholder="Ex: ABC-1234 / ABC 1A23"
               required
             />
             <div
@@ -135,6 +128,19 @@
               class="validation-error"
             >
               <p>A placa é obrigatória.</p>
+            </div>
+
+            <label>TIPO:</label>
+            <select formControlName="tipo" class="selectPagamento">
+              <option value="CARRO">CARRO</option>
+              <option value="MOTO">MOTO</option>
+            </select>
+
+            <div
+              *ngIf="tipo.invalid && formDir.submitted"
+              class="validation-error"
+            >
+              <p>O tipo é obrigatório.</p>
             </div>
 
             <div class="div_buttons">
