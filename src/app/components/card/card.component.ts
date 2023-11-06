@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Spots } from 'src/app/interfaces/Spots';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -12,6 +13,6 @@ export class CardComponent {
   @Input() spotCard!: Spots;
   available!: "DISPONIVEL" | "OCUPADA";
 
-  constructor(public modalStatus: SharedService) {}
-
+  constructor(public modalStatus: SharedService, private router: Router) {}
+  
 }

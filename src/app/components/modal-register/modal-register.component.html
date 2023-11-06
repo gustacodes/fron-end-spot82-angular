@@ -64,12 +64,12 @@
               <option value="PIX">PIX</option>
             </select>
 
-            <!-- <div
-              *ngIf="getFormaDePagamento() && formDir.submitted"
+            <div
+              *ngIf="methodPayment.invalid && formDir.submitted"
               class="validation-error"
             >
-              <p>Forma de pagamento obrigatória.</p>
-            </div> -->
+              <p>Selecione a forma de pagamento.</p>
+            </div>
 
             <div class="div_buttons">
               <button
@@ -85,7 +85,7 @@
         </ng-template>
 
         <ng-template #SemCliente>
-          <form [formGroup]="formGroup" (ngSubmit)="save()" #formDir="ngForm">
+          <form [formGroup]="formGroup" (ngSubmit)="registerClient()" #formDir="ngForm">
             <!-- Conteúdo exibido quando a condição é falsa (bloco else) -->
 
             <label>NOME:</label>

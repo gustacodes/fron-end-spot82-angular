@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import { Router } from '@angular/router';
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Spots } from 'src/app/interfaces/Spots';
 import { SharedService } from 'src/app/services/shared.service';
 import { SpotService } from 'src/app/services/spot.service';
@@ -15,15 +15,13 @@ import { SpotService } from 'src/app/services/spot.service';
   styleUrls: ['./modal-register.component.scss'],
 })
 export class ModalRegisterComponent implements OnInit {
-
   @Input() modalOpen?: boolean;
   formGroup!: FormGroup;
   @Input() spotActual!: Spots;
 
   constructor(
     public service: SharedService,
-    private spotService: SpotService,
-    private router: Router
+    private spotService: SpotService
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +56,8 @@ export class ModalRegisterComponent implements OnInit {
       methodPayment: new FormControl(
         this.service.getSpotActual()!.client
           ? this.service.getSpotActual()!.client.payment
-          : ''
+          : '',
+          [Validators.required]
       ),
     });
   }
@@ -79,16 +78,21 @@ export class ModalRegisterComponent implements OnInit {
     return this.formGroup.get('plate')!;
   }
 
-  save() {
+  get methodPayment() {
+    return this.formGroup.get('methodPayment')!;
+  }
+
+  registerClient() {
     
+    this.formGroup.get('methodPayment')?.setValue('DINHEIRO')
+
     if (this.formGroup.invalid) {
       return;
     }
+    
 
     this.spotService.saveClient(this.formGroup.value).subscribe(
-      (client) => {
-        this.router.navigate(['/']);
-      },
+      (client) => {},
 
       (error) => {
         alert('Falha ao cadastrar cliente' + JSON.stringify(error));
@@ -97,6 +101,11 @@ export class ModalRegisterComponent implements OnInit {
   }
 
   endPeriod() {
+
+    if (this.formGroup.invalid) {
+      return;
+    }
+
     this.spotService
       .end(
         this.service.getSpotActual()?.id,
